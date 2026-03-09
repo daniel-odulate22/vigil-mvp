@@ -8,7 +8,6 @@ interface BottomNavProps {
 
 const BottomNav = ({ onScanClick }: BottomNavProps) => {
   const location = useLocation();
-  const isOnline = useOnlineStatus();
 
   const NavItem = ({ 
     to, 
