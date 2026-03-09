@@ -2,31 +2,19 @@ import { Toaster } from "@/components/ui/toaster";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
 import { AuthProvider } from "@/hooks/useAuth";
 import ProtectedRoute from "@/components/ProtectedRoute";
 import Index from "./pages/Index";
 import Auth from "./pages/Auth";
+import HomePage from "./pages/HomePage";
 import PrescriptionsPage from "./pages/PrescriptionsPage";
 import ProfilePage from "./pages/ProfilePage";
 import SchedulePage from "./pages/SchedulePage";
-import BottomNav from "./components/BottomNav";
 import NotFound from "./pages/NotFound";
-import { useState } from "react";
-import BarcodeScanner from "./components/BarcodeScanner";
-import VerifyModal from "./components/VerifyModal";
+import AppLayout from "./components/AppLayout";
 
 const queryClient = new QueryClient();
-
-const AppLayout = ({ children }: { children: React.ReactNode }) => {
-  const [scannerOpen, setScannerOpen] = useState(false);
-  return (
-    <div className="min-h-screen bg-background">
-      {children}
-      <BottomNav onScanClick={() => setScannerOpen(false)} />
-    </div>
-  );
-};
 
 const App = () => (
   <QueryClientProvider client={queryClient}>
@@ -36,11 +24,18 @@ const App = () => (
         <Sonner />
         <BrowserRouter>
           <Routes>
-            <Route path="/" element={<Index />} />
+            {/* Public routes */}
+            <Route path="/welcome" element={<Index />} />
             <Route path="/auth" element={<Auth />} />
-            <Route path="/prescriptions" element={<ProtectedRoute><PrescriptionsPage /><BottomNav onScanClick={() => {}} /></ProtectedRoute>} />
-            <Route path="/schedule" element={<ProtectedRoute><SchedulePage /><BottomNav onScanClick={() => {}} /></ProtectedRoute>} />
-            <Route path="/profile" element={<ProtectedRoute><ProfilePage /><BottomNav onScanClick={() => {}} /></ProtectedRoute>} />
+
+            {/* Protected routes with shared layout (single BottomNav) */}
+            <Route element={<ProtectedRoute><AppLayout><Outlet /></AppLayout></ProtectedRoute>}>
+              <Route path="/" element={<HomePage />} />
+              <Route path="/prescriptions" element={<PrescriptionsPage />} />
+              <Route path="/schedule" element={<SchedulePage />} />
+              <Route path="/profile" element={<ProfilePage />} />
+            </Route>
+
             <Route path="*" element={<NotFound />} />
           </Routes>
         </BrowserRouter>
