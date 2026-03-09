@@ -1,7 +1,6 @@
 import { NavLink, useLocation } from 'react-router-dom';
-import { Pill, User, ScanBarcode, WifiOff, CalendarClock, Home } from 'lucide-react';
-import { motion, AnimatePresence } from 'framer-motion';
-import { useOnlineStatus } from '@/hooks/useOnlineStatus';
+import { Pill, User, ScanBarcode, CalendarClock, Home } from 'lucide-react';
+import { motion } from 'framer-motion';
 
 interface BottomNavProps {
   onScanClick: () => void;
