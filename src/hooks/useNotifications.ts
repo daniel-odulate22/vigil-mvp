@@ -64,7 +64,7 @@ export const useNotifications = () => {
   );
 
   const scheduleNotification = useCallback(
-    (title: string, options: NotificationOptions, delayMs: number): NodeJS.Timeout | null => {
+    (title: string, options: NotificationOptions, delayMs: number): ReturnType<typeof setTimeout> | null => {
       if (!permissionState.isSupported || permissionState.permission !== 'granted') {
         return null;
       }
