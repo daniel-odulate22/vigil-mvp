@@ -20,6 +20,7 @@ const AppLayout = ({ children }: AppLayoutProps) => {
   const [scannerOpen, setScannerOpen] = useState(false);
   const [verifyModalOpen, setVerifyModalOpen] = useState(false);
   const [scannedBarcode, setScannedBarcode] = useState('');
+  const [assistantOpen, setAssistantOpen] = useState(false);
 
   const handleScanSuccess = (code: string) => {
     setScannedBarcode(code);
