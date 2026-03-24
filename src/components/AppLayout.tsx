@@ -3,6 +3,7 @@ import BottomNav from './BottomNav';
 import OfflineBanner from './OfflineBanner';
 import BarcodeScanner from './BarcodeScanner';
 import VerifyModal from './VerifyModal';
+import DrugAssistant from './DrugAssistant';
 import { useAuth } from '@/hooks/useAuth';
 import { useOfflineSync } from '@/hooks/useOfflineSync';
 import { useToast } from '@/hooks/use-toast';
