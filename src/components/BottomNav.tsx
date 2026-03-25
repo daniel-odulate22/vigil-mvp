@@ -35,26 +35,17 @@ const BottomNav = ({ onScanClick }: BottomNavProps) => {
           <Icon className="w-5 h-5" />
           <span className="text-[10px] mt-1 font-medium">{label}</span>
         </motion.div>
-        {isActive && (
-          <motion.div
-            className="absolute top-0 left-1/2 -translate-x-1/2 w-8 h-0.5 bg-primary rounded-full"
-            layoutId="nav-indicator"
-          />
-        )}
       </NavLink>
     );
   };
 
   return (
-    <nav className="fixed bottom-0 left-0 right-0 z-40 bg-card border-t border-border safe-area-bottom">
+    <nav className="fixed bottom-0 left-0 right-0 z-40 bg-card/95 backdrop-blur-md border-t border-border safe-area-bottom">
       <div className="grid grid-cols-5 h-16 max-w-md mx-auto">
-        {/* Home - far left */}
         <NavItem to="/" icon={Home} label="Home" />
-        
-        {/* Meds */}
         <NavItem to="/prescriptions" icon={Pill} label="Meds" />
         
-        {/* Scan button - center, elevated */}
+        {/* Scan button */}
         <motion.button
           onClick={onScanClick}
           className="flex flex-col items-center justify-center"
@@ -62,16 +53,13 @@ const BottomNav = ({ onScanClick }: BottomNavProps) => {
           transition={{ type: 'spring', stiffness: 400, damping: 17 }}
           aria-label="Scan medication barcode"
         >
-          <div className="-mt-3 w-12 h-12 bg-primary rounded-full flex items-center justify-center shadow-md ring-2 ring-background">
+          <div className="-mt-4 w-14 h-14 bg-primary rounded-full flex items-center justify-center shadow-lg shadow-primary/30 ring-4 ring-background">
             <ScanBarcode className="w-6 h-6 text-primary-foreground" />
           </div>
           <span className="text-[10px] mt-0.5 font-medium text-primary">Scan</span>
         </motion.button>
         
-        {/* Schedule */}
         <NavItem to="/schedule" icon={CalendarClock} label="Schedule" />
-        
-        {/* Profile - far right */}
         <NavItem to="/profile" icon={User} label="Profile" />
       </div>
     </nav>

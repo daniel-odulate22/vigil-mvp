@@ -14,12 +14,12 @@ export default {
     },
     extend: {
       colors: {
-        // Vigil Brand Colors
-        "royal-blue": "hsl(var(--royal-blue))",
-        "powder-blue": "hsl(var(--powder-blue))",
-        "bone": "hsl(var(--bone))",
+        // Brand
+        navy: "hsl(var(--navy))",
+        "navy-light": "hsl(var(--navy-light))",
+        teal: "hsl(var(--teal))",
         
-        // Semantic Tokens
+        // Semantic
         border: "hsl(var(--border))",
         input: "hsl(var(--input))",
         ring: "hsl(var(--ring))",
@@ -65,7 +65,7 @@ export default {
         },
       },
       fontFamily: {
-        serif: ['Crimson Text', 'Georgia', 'serif'],
+        sans: ['Inter', 'system-ui', '-apple-system', 'sans-serif'],
         display: ['Playfair Display', 'Georgia', 'serif'],
       },
       borderRadius: {

@@ -1,25 +1,17 @@
 import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import VigilantEyes from './VigilantEyes';
 
 interface SplashScreenProps {
   onComplete: () => void;
   duration?: number;
 }
 
-const SplashScreen = ({ onComplete, duration = 3500 }: SplashScreenProps) => {
+const SplashScreen = ({ onComplete, duration = 3000 }: SplashScreenProps) => {
   const [showTitle, setShowTitle] = useState(false);
 
   useEffect(() => {
-    // Show title after eyes animation settles
-    const titleTimer = setTimeout(() => {
-      setShowTitle(true);
-    }, 1200);
-
-    // Complete splash after full duration
-    const completeTimer = setTimeout(() => {
-      onComplete();
-    }, duration);
+    const titleTimer = setTimeout(() => setShowTitle(true), 800);
+    const completeTimer = setTimeout(() => onComplete(), duration);
 
     return () => {
       clearTimeout(titleTimer);
@@ -35,47 +27,51 @@ const SplashScreen = ({ onComplete, duration = 3500 }: SplashScreenProps) => {
         exit={{ opacity: 0 }}
         transition={{ duration: 0.5 }}
       >
-        {/* Vigilant Eyes */}
+        {/* Shield icon */}
         <motion.div
-          initial={{ y: 20 }}
-          animate={{ y: 0 }}
+          initial={{ scale: 0.5, opacity: 0 }}
+          animate={{ scale: 1, opacity: 1 }}
           transition={{ duration: 0.6, ease: "easeOut" }}
+          className="w-20 h-20 rounded-2xl bg-primary/20 flex items-center justify-center mb-6"
         >
-          <VigilantEyes />
+          <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="hsl(var(--primary))" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+            <path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z"/>
+            <path d="m9 12 2 2 4-4"/>
+          </svg>
         </motion.div>
 
         {/* Title */}
         <AnimatePresence>
           {showTitle && (
             <motion.div
-              className="mt-8 text-center"
+              className="text-center"
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, ease: "easeOut" }}
             >
-              <h1 className="text-5xl font-display font-bold text-primary tracking-wide">
-                Vigil
+              <h1 className="text-4xl font-display font-bold text-foreground tracking-widest">
+                VIGIL
               </h1>
               <motion.p
-                className="mt-2 text-muted-foreground text-lg font-serif italic"
+                className="mt-2 text-muted-foreground text-sm"
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 transition={{ delay: 0.3, duration: 0.5 }}
               >
-                Always watching over your health
+                Your Medication. Protected.
               </motion.p>
             </motion.div>
           )}
         </AnimatePresence>
 
-        {/* Subtle loading indicator */}
+        {/* Loading dots */}
         <motion.div
           className="absolute bottom-16"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
-          transition={{ delay: 2 }}
+          transition={{ delay: 1.5 }}
         >
-          <div className="flex gap-1">
+          <div className="flex gap-1.5">
             {[0, 1, 2].map((i) => (
               <motion.div
                 key={i}

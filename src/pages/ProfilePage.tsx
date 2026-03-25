@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
-import { User, LogOut, Bell, Shield, ChevronRight, Mail } from 'lucide-react';
+import { LogOut, Bell, Shield, ChevronRight, Mail } from 'lucide-react';
 import { useAuth } from '@/hooks/useAuth';
 import { supabase } from '@/integrations/supabase/client';
 import { Button } from '@/components/ui/button';
@@ -33,7 +33,6 @@ const ProfilePage = () => {
         if (error && error.code !== 'PGRST116') throw error;
         setProfile(data);
 
-        // Check notification permission
         if ('Notification' in window) {
           setNotificationsEnabled(Notification.permission === 'granted');
         }
@@ -49,45 +48,24 @@ const ProfilePage = () => {
 
   const handleSignOut = async () => {
     await signOut();
-    toast({
-      title: 'Signed out',
-      description: 'You have been signed out successfully.',
-    });
+    toast({ title: 'Signed out', description: 'You have been signed out successfully.' });
   };
 
   const handleNotificationToggle = async () => {
     if (!('Notification' in window)) {
-      toast({
-        title: 'Not supported',
-        description: 'Notifications are not supported in this browser.',
-        variant: 'destructive',
-      });
+      toast({ title: 'Not supported', description: 'Notifications are not supported in this browser.', variant: 'destructive' });
       return;
     }
-
     if (Notification.permission === 'denied') {
-      toast({
-        title: 'Notifications blocked',
-        description: 'Please enable notifications in your browser settings.',
-        variant: 'destructive',
-      });
+      toast({ title: 'Notifications blocked', description: 'Please enable notifications in your browser settings.', variant: 'destructive' });
       return;
     }
-
     if (Notification.permission === 'default') {
       const permission = await Notification.requestPermission();
       setNotificationsEnabled(permission === 'granted');
       if (permission === 'granted') {
-        toast({
-          title: 'Notifications enabled',
-          description: "You'll receive medication reminders.",
-        });
+        toast({ title: 'Notifications enabled', description: "You'll receive medication reminders." });
       }
-    } else {
-      toast({
-        title: 'Notifications already enabled',
-        description: 'To disable, change your browser settings.',
-      });
     }
   };
 
@@ -97,13 +75,10 @@ const ProfilePage = () => {
     return 'User';
   };
 
-  const getInitial = () => {
-    const name = getDisplayName();
-    return name.charAt(0).toUpperCase();
-  };
+  const getInitial = () => getDisplayName().charAt(0).toUpperCase();
 
   return (
-    <div className="pb-24 pt-4 px-4">
+    <div className="pb-24 pt-6 px-4">
       {/* Profile Header */}
       <motion.div
         className="flex items-center gap-4 mb-8"
@@ -112,80 +87,58 @@ const ProfilePage = () => {
       >
         <div className="w-16 h-16 bg-primary rounded-full flex items-center justify-center">
           {profile?.avatar_url ? (
-            <img
-              src={profile.avatar_url}
-              alt="Profile"
-              className="w-full h-full rounded-full object-cover"
-            />
+            <img src={profile.avatar_url} alt="Profile" className="w-full h-full rounded-full object-cover" />
           ) : (
             <span className="text-2xl font-bold text-primary-foreground">{getInitial()}</span>
           )}
         </div>
         <div>
-          <h1 className="text-xl font-display font-bold text-foreground">{getDisplayName()}</h1>
+          <h1 className="text-xl font-semibold text-foreground">{getDisplayName()}</h1>
           <p className="text-muted-foreground text-sm">{user?.email}</p>
         </div>
       </motion.div>
 
-      {/* Settings Sections */}
+      {/* Settings */}
       <div className="space-y-6">
-        {/* Notifications */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.1 }}
-        >
-          <h2 className="text-sm font-medium text-muted-foreground uppercase tracking-wide mb-3">
-            Notifications
-          </h2>
+        <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.1 }}>
+          <h2 className="text-xs font-medium text-muted-foreground uppercase tracking-wider mb-3">Notifications</h2>
           <div className="bg-card rounded-xl border border-border overflow-hidden">
             <div className="flex items-center justify-between p-4">
               <div className="flex items-center gap-3">
-                <div className="w-10 h-10 bg-secondary rounded-lg flex items-center justify-center">
+                <div className="w-10 h-10 bg-primary/15 rounded-lg flex items-center justify-center">
                   <Bell className="w-5 h-5 text-primary" />
                 </div>
                 <div>
-                  <p className="font-medium text-foreground">Push Notifications</p>
+                  <p className="font-medium text-foreground text-sm">Push Notifications</p>
                   <p className="text-xs text-muted-foreground">Medication reminders</p>
                 </div>
               </div>
-              <Switch
-                checked={notificationsEnabled}
-                onCheckedChange={handleNotificationToggle}
-              />
+              <Switch checked={notificationsEnabled} onCheckedChange={handleNotificationToggle} />
             </div>
           </div>
         </motion.div>
 
-        {/* Account */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.2 }}
-        >
-          <h2 className="text-sm font-medium text-muted-foreground uppercase tracking-wide mb-3">
-            Account
-          </h2>
+        <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.2 }}>
+          <h2 className="text-xs font-medium text-muted-foreground uppercase tracking-wider mb-3">Account</h2>
           <div className="bg-card rounded-xl border border-border overflow-hidden divide-y divide-border">
             <div className="flex items-center justify-between p-4">
               <div className="flex items-center gap-3">
-                <div className="w-10 h-10 bg-secondary rounded-lg flex items-center justify-center">
+                <div className="w-10 h-10 bg-primary/15 rounded-lg flex items-center justify-center">
                   <Mail className="w-5 h-5 text-primary" />
                 </div>
                 <div>
-                  <p className="font-medium text-foreground">Email</p>
+                  <p className="font-medium text-foreground text-sm">Email</p>
                   <p className="text-xs text-muted-foreground">{user?.email}</p>
                 </div>
               </div>
             </div>
-
             <div className="flex items-center justify-between p-4">
               <div className="flex items-center gap-3">
-                <div className="w-10 h-10 bg-secondary rounded-lg flex items-center justify-center">
+                <div className="w-10 h-10 bg-primary/15 rounded-lg flex items-center justify-center">
                   <Shield className="w-5 h-5 text-primary" />
                 </div>
                 <div>
-                  <p className="font-medium text-foreground">Privacy</p>
+                  <p className="font-medium text-foreground text-sm">Privacy</p>
                   <p className="text-xs text-muted-foreground">Your data is encrypted</p>
                 </div>
               </div>
@@ -194,12 +147,7 @@ const ProfilePage = () => {
           </div>
         </motion.div>
 
-        {/* Sign Out */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.3 }}
-        >
+        <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.3 }}>
           <Button
             variant="outline"
             onClick={handleSignOut}
@@ -212,18 +160,7 @@ const ProfilePage = () => {
       </div>
 
       {/* App Info */}
-      <motion.div
-        className="mt-8 text-center"
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ delay: 0.4 }}
-      >
-        <div className="flex items-center justify-center gap-2 mb-2">
-          <div className="w-4 h-1.5 bg-primary rounded-full" />
-          <div className="w-4 h-4 bg-primary-foreground rounded-full border-2 border-primary flex items-center justify-center">
-            <div className="w-1.5 h-1.5 bg-primary rounded-full" />
-          </div>
-        </div>
+      <motion.div className="mt-8 text-center" initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.4 }}>
         <p className="text-xs text-muted-foreground">Vigil v1.0.0</p>
         <p className="text-xs text-muted-foreground">Always watching over your health</p>
       </motion.div>

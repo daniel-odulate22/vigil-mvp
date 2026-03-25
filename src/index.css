@@ -2,100 +2,59 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Vigil Design System
-   Brand Colors:
-   - Royal Blue: #162660 (Primary)
-   - Powder Blue: #D0E6FD (Secondary/Accent)
-   - Bone: #F1E4D1 (Background/Neutral)
-   
-   Dark Academia Minimalist Style
-*/
+/* Vigil Design System — Dark Navy + Teal */
 
 @layer base {
   :root {
-    /* Vigil Brand Colors in HSL */
-    --royal-blue: 227 64% 24%;
-    --powder-blue: 212 93% 90%;
-    --bone: 33 52% 88%;
+    /* Brand tokens */
+    --navy: 215 30% 16%;
+    --navy-light: 215 25% 21%;
+    --teal: 168 76% 50%;
+    --teal-foreground: 215 30% 10%;
     
-    /* Semantic Tokens */
-    --background: 33 52% 88%;
-    --foreground: 227 64% 24%;
+    /* Semantic Tokens — dark by default */
+    --background: 215 30% 12%;
+    --foreground: 210 20% 95%;
 
-    --card: 33 52% 92%;
-    --card-foreground: 227 64% 24%;
+    --card: 215 25% 18%;
+    --card-foreground: 210 20% 95%;
 
-    --popover: 33 52% 92%;
-    --popover-foreground: 227 64% 24%;
+    --popover: 215 25% 18%;
+    --popover-foreground: 210 20% 95%;
 
-    --primary: 227 64% 24%;
-    --primary-foreground: 33 52% 95%;
+    --primary: 168 76% 50%;
+    --primary-foreground: 215 30% 10%;
 
-    --secondary: 212 93% 90%;
-    --secondary-foreground: 227 64% 24%;
+    --secondary: 215 20% 25%;
+    --secondary-foreground: 210 20% 90%;
 
-    --muted: 33 30% 82%;
-    --muted-foreground: 227 40% 40%;
+    --muted: 215 20% 22%;
+    --muted-foreground: 215 15% 55%;
 
-    --accent: 212 93% 90%;
-    --accent-foreground: 227 64% 24%;
+    --accent: 168 50% 25%;
+    --accent-foreground: 168 76% 80%;
 
-    --destructive: 0 84% 60%;
+    --destructive: 0 72% 51%;
     --destructive-foreground: 0 0% 100%;
 
-    --border: 227 30% 80%;
-    --input: 227 30% 85%;
-    --ring: 227 64% 24%;
+    --border: 215 20% 25%;
+    --input: 215 20% 25%;
+    --ring: 168 76% 50%;
 
     --radius: 0.75rem;
 
-    --sidebar-background: 33 52% 90%;
-    --sidebar-foreground: 227 64% 24%;
-    --sidebar-primary: 227 64% 24%;
-    --sidebar-primary-foreground: 33 52% 95%;
-    --sidebar-accent: 212 93% 90%;
-    --sidebar-accent-foreground: 227 64% 24%;
-    --sidebar-border: 227 30% 80%;
-    --sidebar-ring: 227 64% 24%;
+    --sidebar-background: 215 30% 14%;
+    --sidebar-foreground: 210 20% 95%;
+    --sidebar-primary: 168 76% 50%;
+    --sidebar-primary-foreground: 215 30% 10%;
+    --sidebar-accent: 215 20% 25%;
+    --sidebar-accent-foreground: 210 20% 90%;
+    --sidebar-border: 215 20% 25%;
+    --sidebar-ring: 168 76% 50%;
   }
 
   .dark {
-    --background: 227 64% 8%;
-    --foreground: 33 52% 92%;
-
-    --card: 227 64% 12%;
-    --card-foreground: 33 52% 92%;
-
-    --popover: 227 64% 12%;
-    --popover-foreground: 33 52% 92%;
-
-    --primary: 212 93% 90%;
-    --primary-foreground: 227 64% 24%;
-
-    --secondary: 227 40% 20%;
-    --secondary-foreground: 33 52% 92%;
-
-    --muted: 227 40% 20%;
-    --muted-foreground: 33 30% 70%;
-
-    --accent: 212 70% 40%;
-    --accent-foreground: 33 52% 92%;
-
-    --destructive: 0 62% 30%;
-    --destructive-foreground: 0 0% 100%;
-
-    --border: 227 40% 25%;
-    --input: 227 40% 25%;
-    --ring: 212 93% 90%;
-
-    --sidebar-background: 227 64% 10%;
-    --sidebar-foreground: 33 52% 92%;
-    --sidebar-primary: 212 93% 90%;
-    --sidebar-primary-foreground: 227 64% 24%;
-    --sidebar-accent: 227 40% 20%;
-    --sidebar-accent-foreground: 33 52% 92%;
-    --sidebar-border: 227 40% 25%;
-    --sidebar-ring: 212 93% 90%;
+    /* Same as default — app is always dark */
   }
 }
 
@@ -106,11 +65,11 @@
 
   body {
     @apply bg-background text-foreground antialiased;
-    font-family: 'Crimson Text', 'Georgia', serif;
+    font-family: 'Inter', system-ui, -apple-system, sans-serif;
   }
 
   h1, h2, h3, h4, h5, h6 {
-    font-family: 'Playfair Display', 'Georgia', serif;
+    font-family: 'Inter', system-ui, -apple-system, sans-serif;
     @apply font-semibold tracking-tight;
   }
 }
