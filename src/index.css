@@ -6,52 +6,55 @@
 
 @layer base {
   :root {
-    /* Brand tokens */
-    --navy: 215 30% 16%;
-    --navy-light: 215 25% 21%;
-    --teal: 168 76% 50%;
-    --teal-foreground: 215 30% 10%;
-    
-    /* Semantic Tokens — dark by default */
-    --background: 215 30% 12%;
-    --foreground: 210 20% 95%;
+  /* Brand tokens */
+  --white: 0 0% 100%;
+  --navy: 222 47% 11%;
+  --navy-light: 215 25% 27%;
+  /* The calm green from the waitlist */
+  --sage-green: 155 35% 50%; 
+  /* The added professional blue */
+  --trust-blue: 212 80% 45%; 
 
-    --card: 215 25% 18%;
-    --card-foreground: 210 20% 95%;
+  /* Semantic Tokens */
+  --background: 0 0% 100%;
+  --foreground: 222 47% 11%;
 
-    --popover: 215 25% 18%;
-    --popover-foreground: 210 20% 95%;
+  --card: 0 0% 100%;
+  --card-foreground: 222 47% 11%;
 
-    --primary: 168 76% 50%;
-    --primary-foreground: 215 30% 10%;
+  --popover: 0 0% 100%;
+  --popover-foreground: 222 47% 11%;
 
-    --secondary: 215 20% 25%;
-    --secondary-foreground: 210 20% 90%;
+  --primary: 155 40% 35%;
+  --primary-foreground: 0 0% 100%;
 
-    --muted: 215 20% 22%;
-    --muted-foreground: 215 15% 55%;
+  --secondary: 212 80% 45%;
+  --secondary-foreground: 0 0% 100%;
 
-    --accent: 168 50% 25%;
-    --accent-foreground: 168 76% 80%;
+  --muted: 210 40% 96%;
+  --muted-foreground: 215 16% 47%;
 
-    --destructive: 0 72% 51%;
-    --destructive-foreground: 0 0% 100%;
+  --accent: 210 40% 96%;
+  --accent-foreground: 222 47% 11%;
 
-    --border: 215 20% 25%;
-    --input: 215 20% 25%;
-    --ring: 168 76% 50%;
+  --destructive: 0 84% 60%;
+  --destructive-foreground: 0 0% 100%;
 
-    --radius: 0.75rem;
+  --border: 214 32% 91%;
+  --input: 214 32% 91%;
+  --ring: 212 80% 45%;
 
-    --sidebar-background: 215 30% 14%;
-    --sidebar-foreground: 210 20% 95%;
-    --sidebar-primary: 168 76% 50%;
-    --sidebar-primary-foreground: 215 30% 10%;
-    --sidebar-accent: 215 20% 25%;
-    --sidebar-accent-foreground: 210 20% 90%;
-    --sidebar-border: 215 20% 25%;
-    --sidebar-ring: 168 76% 50%;
-  }
+  --radius: 0.75rem;
+
+  --sidebar-background: 210 40% 98%;
+  --sidebar-foreground: 222 47% 11%;
+  --sidebar-primary: 155 35% 50%;
+  --sidebar-primary-foreground: 0 0% 100%;
+  --sidebar-accent: 210 40% 96%;
+  --sidebar-accent-foreground: 222 47% 11%;
+  --sidebar-border: 214 32% 91%;
+  --sidebar-ring: 212 80% 45%;
+}
 
   .dark {
     /* Same as default — app is always dark */
