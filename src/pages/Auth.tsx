@@ -176,7 +176,7 @@ const Auth = () => {
                     placeholder="How should we call you?"
                     value={displayName}
                     onChange={(e) => setDisplayName(e.target.value)}
-                    className="pl-10 bg-secondary border-border"
+                    className="pl-10 bg-muted border-border"
                     maxLength={50}
                   />
                 </div>
@@ -194,7 +194,7 @@ const Auth = () => {
                 placeholder="your@email.com"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
-                className="pl-10 bg-secondary border-border"
+                className="pl-10 bg-muted border-border"
                 required
               />
             </div>
@@ -210,7 +210,7 @@ const Auth = () => {
                 placeholder="••••••••"
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
-                className="pl-10 pr-10 bg-secondary border-border"
+                className="pl-10 pr-10 bg-muted border-border"
                 required
                 minLength={6}
               />
