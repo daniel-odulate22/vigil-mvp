@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
-import { Bell, Pill, Clock, TrendingUp, Calendar } from 'lucide-react';
+import { Bell, Pill, Clock, TrendingUp, Calendar, Flame } from 'lucide-react';
 import { useAuth } from '@/hooks/useAuth';
 import { supabase } from '@/integrations/supabase/client';
 import { Button } from '@/components/ui/button';
@@ -87,7 +87,7 @@ const HomePage = () => {
     <div className="pb-24 pt-6 px-4">
       {/* Header */}
       <motion.div
-        className="flex items-center justify-between mb-6"
+        className="flex items-center justify-between mb-4"
         initial={{ opacity: 0, y: -10 }}
         animate={{ opacity: 1, y: 0 }}
       >
@@ -95,9 +95,22 @@ const HomePage = () => {
           <p className="text-muted-foreground text-sm">{getGreeting()}</p>
           <h1 className="text-2xl font-semibold text-foreground">{displayName}</h1>
         </div>
-        <button className="w-10 h-10 rounded-full bg-card border border-border flex items-center justify-center">
-          <Bell className="w-5 h-5 text-muted-foreground" />
-        </button>
+        <div className="flex items-center gap-2">
+          {stats.weekStreak > 0 && (
+            <motion.div
+              className="flex items-center gap-1.5 bg-secondary/15 text-secondary border border-secondary/25 px-3 py-1.5 rounded-full"
+              initial={{ scale: 0.8, opacity: 0 }}
+              animate={{ scale: 1, opacity: 1 }}
+              transition={{ delay: 0.3, type: 'spring', stiffness: 200 }}
+            >
+              <Flame className="w-3.5 h-3.5" />
+              <span className="text-xs font-semibold">{stats.weekStreak} day streak</span>
+            </motion.div>
+          )}
+          <button className="w-10 h-10 rounded-full bg-card border border-border flex items-center justify-center">
+            <Bell className="w-5 h-5 text-muted-foreground" />
+          </button>
+        </div>
       </motion.div>
 
       {/* Next Medicine Card */}
@@ -126,10 +139,10 @@ const HomePage = () => {
       {/* Stats Grid */}
       <div className="grid grid-cols-2 gap-3 mb-6">
         {[
-          { icon: Calendar, value: stats.todayDoses, label: 'Doses today', delay: 0.15 },
-          { icon: TrendingUp, value: stats.weekStreak, label: 'Day streak', delay: 0.2 },
-          { icon: Pill, value: stats.activeMeds, label: 'Active meds', delay: 0.25 },
-          { icon: Clock, value: stats.lastDose ? formatTime(stats.lastDose) : '--', label: 'Last dose', delay: 0.3 },
+          { icon: Calendar, value: stats.todayDoses, label: 'Doses today', delay: 0.15, green: false },
+          { icon: TrendingUp, value: stats.weekStreak, label: 'Day streak', delay: 0.2, green: true },
+          { icon: Pill, value: stats.activeMeds, label: 'Active meds', delay: 0.25, green: false },
+          { icon: Clock, value: stats.lastDose ? formatTime(stats.lastDose) : '--', label: 'Last dose', delay: 0.3, green: false },
         ].map((stat, i) => (
           <motion.div
             key={i}
@@ -138,8 +151,8 @@ const HomePage = () => {
             animate={{ opacity: 1, scale: 1 }}
             transition={{ delay: stat.delay }}
           >
-            <div className="w-8 h-8 bg-primary/15 rounded-lg flex items-center justify-center mb-2">
-              <stat.icon className="w-4 h-4 text-primary" />
+            <div className={`w-8 h-8 rounded-lg flex items-center justify-center mb-2 ${stat.green ? 'bg-secondary/15' : 'bg-primary/15'}`}>
+              <stat.icon className={`w-4 h-4 ${stat.green ? 'text-secondary' : 'text-primary'}`} />
             </div>
             <p className="text-xl font-semibold text-foreground">{stat.value}</p>
             <p className="text-xs text-muted-foreground">{stat.label}</p>
