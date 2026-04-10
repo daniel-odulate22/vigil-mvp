@@ -4,6 +4,7 @@ import OfflineBanner from './OfflineBanner';
 import BarcodeScanner from './BarcodeScanner';
 import VerifyModal from './VerifyModal';
 import DrugAssistant from './DrugAssistant';
+import ReminderAlert from './ReminderAlert';
 import { useAuth } from '@/hooks/useAuth';
 import { useOfflineSync } from '@/hooks/useOfflineSync';
 import { useToast } from '@/hooks/use-toast';
@@ -81,6 +82,7 @@ const AppLayout = ({ children }: AppLayoutProps) => {
 
   return (
     <div className="min-h-screen bg-background">
+      <ReminderAlert />
       <OfflineBanner />
       {children}
       <BottomNav onScanClick={() => setScannerOpen(true)} />
