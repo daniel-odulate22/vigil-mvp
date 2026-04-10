@@ -8,50 +8,52 @@
   :root {
     /* Brand tokens */
     --white: 0 0% 100%;
-    --navy: 222 47% 11%;
+    --navy: 220 42% 15%;
     --navy-light: 215 25% 27%;
     --sage-green: 155 35% 50%;
-    --trust-blue: 212 80% 45%;
+    --trust-blue: 212 72% 45%;
 
     /* Semantic Tokens */
-    --background: 0 0% 100%;
-    --foreground: 222 47% 11%;
+    --background: 210 20% 98%;
+    --foreground: 220 42% 15%;
 
     --card: 0 0% 100%;
-    --card-foreground: 222 47% 11%;
+    --card-foreground: 220 42% 15%;
 
     --popover: 0 0% 100%;
-    --popover-foreground: 222 47% 11%;
+    --popover-foreground: 220 42% 15%;
 
-    --primary: 155 40% 35%;
+    /* Primary = Trust Blue */
+    --primary: 212 72% 45%;
     --primary-foreground: 0 0% 100%;
 
-    --secondary: 212 80% 45%;
+    /* Secondary = Sage Green (kept as accent) */
+    --secondary: 155 40% 42%;
     --secondary-foreground: 0 0% 100%;
 
-    --muted: 210 40% 96%;
+    --muted: 210 20% 95%;
     --muted-foreground: 215 16% 47%;
 
-    --accent: 210 40% 96%;
-    --accent-foreground: 222 47% 11%;
+    --accent: 155 25% 93%;
+    --accent-foreground: 220 42% 15%;
 
     --destructive: 0 84% 60%;
     --destructive-foreground: 0 0% 100%;
 
-    --border: 214 32% 91%;
-    --input: 214 32% 91%;
-    --ring: 212 80% 45%;
+    --border: 214 25% 90%;
+    --input: 214 25% 90%;
+    --ring: 212 72% 45%;
 
     --radius: 0.75rem;
 
-    --sidebar-background: 210 40% 98%;
-    --sidebar-foreground: 222 47% 11%;
-    --sidebar-primary: 155 35% 50%;
+    --sidebar-background: 210 20% 97%;
+    --sidebar-foreground: 220 42% 15%;
+    --sidebar-primary: 212 72% 45%;
     --sidebar-primary-foreground: 0 0% 100%;
-    --sidebar-accent: 210 40% 96%;
-    --sidebar-accent-foreground: 222 47% 11%;
-    --sidebar-border: 214 32% 91%;
-    --sidebar-ring: 212 80% 45%;
+    --sidebar-accent: 155 25% 93%;
+    --sidebar-accent-foreground: 220 42% 15%;
+    --sidebar-border: 214 25% 90%;
+    --sidebar-ring: 212 72% 45%;
   }
 
   .dark {
